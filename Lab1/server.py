@@ -1,6 +1,7 @@
 from flask import Flask
 import signal
 import sys
+import time 
 
 print("Start server")
 
@@ -12,13 +13,21 @@ def handle_stop(signum, frame):
 app = Flask(__name__)
 
 @app.route("/")
-def hello():
+def fast():
     return """
         <div style="text-align:center; padding-top:250px;">
             <img src="https://media.tenor.com/IB9ol7welioAAAAM/dance-vibing.gif">
         </div>
         """
 
+@app.route("/slow")
+def slow():
+    time.sleep(6)
+    return """
+        <div style="text-align:center; padding-top:250px;">
+            <img src="https://media.tenor.com/IB9ol7welioAAAAM/dance-vibing.gif">
+        </div>
+        """
 signal.signal(signal.SIGINT, handle_stop)
 
 
