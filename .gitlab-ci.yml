@@ -8,7 +8,7 @@ build-and-push:
     - name: docker:24-dind
 
   before_script:
-    - echo "$CI_JOB_TOKEN" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
   script:
     - docker build -t my_img .
     - docker run -p 5000:5000 --name my_img my_cont
