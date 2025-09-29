@@ -9,6 +9,9 @@ build-and-push:
 
   before_script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+    - docker context create context
+    - docker buildx create --name mybuilder --driver docker-container --use context
   script:
-    - docker build -t my_img .
-    - docker run -p 5000:5000 --name my_img my_cont
+    - TAGS="$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA"
+    - if [ -n "$CI_COMMIT_TAG" ]; then TAGS="$TAGS -t $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG"; fi
+    - docker buildx build --platform linux/amd64,linux/arm64 -f ./1/Dockerfile ./1 -t $TAGS --push
