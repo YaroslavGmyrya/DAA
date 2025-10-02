@@ -28,6 +28,14 @@ def slow():
             <img src="https://media.tenor.com/IB9ol7welioAAAAM/dance-vibing.gif">
         </div>
         """
+
+@app.route("/name")
+def slow():
+    time.sleep(6)
+    return """
+        <h1>Yaroslav</h1>
+        """
+
 signal.signal(signal.SIGINT, handle_stop)
 
 
