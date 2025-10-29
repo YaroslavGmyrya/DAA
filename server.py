@@ -19,7 +19,7 @@ def fast():
             <img src="https://media.tenor.com/IB9ol7welioAAAAM/dance-vibing.gif">
         </div>
         """
- 
+
 @app.route("/slow")
 def slow():
     time.sleep(6)
