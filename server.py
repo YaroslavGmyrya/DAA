@@ -30,10 +30,9 @@ def slow():
         """
 
 @app.route("/name")
-def slow():
-    time.sleep(6)
+def name():
     return """
-        <h1>Yaroslav</h1>
+        Yaroslav
         """  
 
 signal.signal(signal.SIGINT, handle_stop)
