@@ -19,7 +19,7 @@ spec:
       serviceAccountName: ci
       containers:
         - name: ia331s08-app
-          image: cr.hawk.csc.sibsutis.ru/hawk-dev/ia331s08-distrarchapp:v1
+          image: ${TAGS}
           ports:
             - containerPort: 8000
           env:

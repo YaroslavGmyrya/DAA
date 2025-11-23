@@ -28,6 +28,8 @@ build:
 deploy:
   stage: deploy
   image: mcp/kubernetes:latest
+  before_script:
+    - apk add --no-cache gettext
   script:
     - echo "Deploy with tag $TAGS"
     - ls -la
