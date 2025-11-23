@@ -1,21 +1,21 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
- name: hawk-ingress-ia331s08
- namespace: ia331
- labels:
- app: hawk-app-ia331s08
- owner: ia331s08
+  name: hawk-ingress-ia331s08
+  namespace: ia331
+  labels:
+    app: hawk-app-ia331s08
+    owner: ia331s08
 spec:
- ingressClassName: traefik-dev
- rules:
- - host: ia331.hawk-dev.csc.sibsutis.ru
- http:
- paths:
- - path: /
- pathType: Prefix
- backend:
- service:
- name: hawk-service-ia331s08
- port:
- number: 80
+  ingressClassName: traefik-dev
+  rules:
+    - host: ia331s08.hawk-dev.csc.sibsutis.ru
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hawk-service-ia331s08
+                port:
+                  number: 80

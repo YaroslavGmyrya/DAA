@@ -1,16 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
- name: hawk-service-ia331s08
- namespace: ia331
- labels:
- app: hawk-app-ia331s08
- owner: ia331s08
+  name: hawk-service-ia331s08
+  namespace: ia331
+  labels:
+    app: hawk-app-ia331s08
+    owner: ia331s08
 spec:
- selector:
- app: hawk-app-ia331s08
- ports:
- - protocol: TCP
- port: 80
- targetPort: 8080
- type: ClusterIP
+  type: ClusterIP
+  selector:
+    app: hawk-app-ia331s08
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
