@@ -29,9 +29,10 @@ deploy:
   stage: deploy
   image: mcp/kubernetes:latest
   script:
-    - echo "Deploy with tag $IMAGE_TAG"
+    - echo "Deploy with tag $TAGS"
+    - ls -la
+    - ls -la k8s
     - envsubst < k8s/deployment.yaml | kubectl apply -f -
-    - kubectl apply -k k8s/
     - kubectl apply -f k8s/service.yaml
     - kubectl apply -f k8s/ingress.yaml
 
