@@ -31,10 +31,9 @@ deploy:
   script:
     - echo "Deploy with tag $TAGS"
     - ls -la
-    - ls -la k8s
-    - envsubst < k8s/deployment.yaml | kubectl apply -f -
-    - kubectl apply -f k8s/service.yaml
-    - kubectl apply -f k8s/ingress.yaml
+    - envsubst < deployment.yaml | kubectl apply -f -
+    - kubectl apply -f service.yaml
+    - kubectl apply -f ingress.yaml
 
   rules:
     - when: manual
