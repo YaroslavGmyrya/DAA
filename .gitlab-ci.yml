@@ -6,18 +6,15 @@ build:
   image: docker:24
   services:
     - name: docker:24-dind
-
   before_script:
-    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+    - echo "$HAWK_REGISTRY_PASSWORD" | docker login -u "$HAWK_REGISTRY_USER" --password-stdin "$HAWK_REGISTRY"
     - docker context create context
-    - docker buildx create --name builder --driver docker-container --use context
+    - docker buildx create --name mybuilder --driver docker-container --use context
   script:
-    - TAGS="$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA"
-    - if [ -n "$CI_COMMIT_TAG" ]; then TAGS="$TAGS -t $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG"; fi
-    - docker buildx build --platform linux/amd64,linux/arm64 -f ./Dockerfile ./ -t $TAGS --push
-
+    - TAGS="$HAWK_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA"
+    - if [ -n "$CI_COMMIT_TAG" ]; then TAGS="$TAGS -t $HAWK_REGISTRY_IMAGE:$CI_COMMIT_TAG"; fi
+    - docker buildx build --platform linux/amd64,linux/arm64 -f ./1/Dockerfile ./1 -t $TAGS --push
   rules:
-    - if: '$CI_COMMIT_TAG'
+    - if: "$CI_COMMIT_TAG"
       when: always
-
     - when: manual
