@@ -27,7 +27,7 @@ build:
 
 deploy:
   stage: deploy
-  image: bitnami/kubectl:1.30
+  image: bitnami/kubectl:1.30.7
   script:
     - echo "Deploy with tag $IMAGE_TAG"
     - envsubst < k8s/deployment.yaml | kubectl apply -f -
