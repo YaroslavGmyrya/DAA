@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: hawk-app-ia331s08
-          image: ${HAWK_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA}
+          image: registry.csc.sibsutis.ru/ia331s08/distrarchapp:v2
           ports:
             - containerPort: 8080
           securityContext:
