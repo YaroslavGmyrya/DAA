@@ -1,45 +1,48 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hawk-app-ia331s08
+  name: ia331s08-app
   namespace: ia331
   labels:
-    app: hawk-app-ia331s08
     owner: ia331s08
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: hawk-app-ia331s08
+      app: ia331s08-app
   template:
     metadata:
       labels:
-        app: hawk-app-ia331s08
+        app: ia331s08-app
         owner: ia331s08
     spec:
+      serviceAccountName: ci
       containers:
-        - name: hawk-app-ia331s08
-          image: registry.csc.sibsutis.ru/ia331s08/distrarchapp:v2
+        - name: ia331s08-app
+          image: cr.hawk.csc.sibsutis.ru/hawk-dev/ia331s08-distrarchapp:v1
           ports:
-            - containerPort: 8080
+            - containerPort: 8000
+          env:
+            - name: PORT
+              value: "8000"
           securityContext:
             allowPrivilegeEscalation: false
           resources:
             requests:
-              cpu: "100m"
-              memory: "128Mi"
+              memory: "32Mi"
+              cpu: "32m"
             limits:
-              cpu: "200m"
-              memory: "256Mi"
+              memory: "64Mi"
+              cpu: "64m"
           readinessProbe:
             httpGet:
               path: /
-              port: 8080
+              port: 8000
             initialDelaySeconds: 5
             periodSeconds: 10
           livenessProbe:
             httpGet:
               path: /
-              port: 8080
+              port: 8000
             initialDelaySeconds: 15
             periodSeconds: 20
