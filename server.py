@@ -37,6 +37,13 @@ def name():
     return """
         Yaroslav
         """  
+        
+
+@app.route("/lab")
+def lab():
+    return """
+        LAB3
+        """  
 
 signal.signal(signal.SIGINT, handle_stop)
 
