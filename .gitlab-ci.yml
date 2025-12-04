@@ -35,7 +35,7 @@ deploy:
   script:
     - echo "Deploy with tag $TAGS"
     - ls -la
-    - envsubst < deployment.yaml | kubectl apply -f -
+    - envsubst < deployment.yaml | kubectl apply -f - --validate=false    
     - kubectl apply -f service.yaml
     - kubectl apply -f ingress.yaml
 
