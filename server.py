@@ -18,6 +18,8 @@ def fast():
         <div style="text-align:center; padding-top:250px;">
             <img src="https://media.tenor.com/IB9ol7welioAAAAM/dance-vibing.gif">
             <img src="https://media.tenor.com/IB9ol7welioAAAAM/dance-vibing.gif">
+            <img src="https://media.tenor.com/IB9ol7welioAAAAM/dance-vibing.gif">
+            <img src="https://media.tenor.com/IB9ol7welioAAAAM/dance-vibing.gif">
         </div>
         """
 
