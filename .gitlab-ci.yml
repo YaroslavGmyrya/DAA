@@ -28,14 +28,16 @@ build:
 
 diff:
   stage: diff
-  image: 
-    name: alpine/helm:3.12.3
-    entrypoint: [""]  
+  image: bitnami/kubectl:latest   
+
+  variables:
+    NAMESPACE: "ia331"
+
   script:
-    - helm plugin install https://github.com/databus23/helm-diff
     - mkdir -p ~/.kube
-    - echo "$KUBE_CONFIG" > ~/.kube/config
-    - helm diff upgrade --allow-unreleased ia331s08-app ./chart --namespace ia331 --set image="$TAGS"
+    - echo "$KUBECONFIG" > ~/.kube/config
+
+    - helm template ia331s08-app ./chart --namespace "$NAMESPACE" --set image="$TAGS" | kubectl diff -n "$NAMESPACE" -f -
 
 
 deploy:
@@ -46,7 +48,7 @@ deploy:
 
   script:
     - mkdir -p ~/.kube
-    - echo "$KUBE_CONFIG" > ~/.kube/config
+    - echo "$KUBECONFIG" > ~/.kube/config
     - helm upgrade --install ia331s08-app ./chart --namespace ia331 --set image="$TAGS"
 
   rules:
