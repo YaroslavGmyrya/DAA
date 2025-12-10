@@ -54,10 +54,13 @@ deploy:
     name: alpine/helm:3.12.3
     entrypoint: [""]  
 
+  variables:
+    RELEASE_NAME: "ia331s08-app2"
+
   script:
     - mkdir -p ~/.kube
     - echo "$KUBECONFIG" > ~/.kube/config
-    - helm upgrade --install ia331s08-app ./chart --namespace ia331 --set image="$TAGS"
+    - helm upgrade --install "$RELEASE_NAME" ./chart --namespace ia331 --set image="$TAGS"
 
   rules:
     - when: manual
