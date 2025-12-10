@@ -1,8 +1,10 @@
 owner: ia331s08
+namespace: ia331
 
 deployment:
   replicas: 2
 
 ingress:
   className: traefik-dev
+  domain: hawk-dev.csc.sibsutis.ru
 
