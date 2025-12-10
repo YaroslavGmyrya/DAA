@@ -29,11 +29,12 @@ build:
 diff:
   stage: diff
   image: alpine/helm:3.14.0
+  
   script:
     - helm plugin install https://github.com/databus23/helm-diff || true
     - mkdir -p ~/.kube
     - echo "$KUBE_CONFIG" > ~/.kube/config
-    - helm diff upgrade --allow-unreleased ia331s08-app ./chart --namespace ia331 \ --set image="$TAGS"
+    - helm diff upgrade --allow-unreleased ia331s08-app ./chart --namespace ia331 --set image="$TAGS"
 
 
 deploy:
