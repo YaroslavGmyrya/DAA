@@ -28,8 +28,9 @@ build:
 
 diff:
   stage: diff
-  image: bitnami/kubectl:latest   
-
+  image: 
+    name: bitnami/kubectl:latest   
+    entrypoint: [""]  
   variables:
     NAMESPACE: "ia331"
 
