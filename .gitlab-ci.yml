@@ -45,7 +45,7 @@ diff:
     - mkdir -p ~/.kube
     - echo "$KUBECONFIG" > ~/.kube/config
 
-    - helm template ia331s08-app ./chart --namespace "$NAMESPACE" --set image="$TAGS" | kubectl diff -n "$NAMESPACE" -f -
+    - helm template ia331s08-app ./chart --namespace "$NAMESPACE" --set image="$TAGS" | kubectl diff -n "$NAMESPACE" -f - || true
 
 
 deploy:
