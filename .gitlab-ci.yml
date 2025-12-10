@@ -40,7 +40,9 @@ diff:
 
 deploy:
   stage: deploy
-  image: alpine/helm:3.14.0 
+  image: 
+    name: alpine/helm:3.14.0
+    entrypoint: [""]  
 
   script:
     - mkdir -p ~/.kube
