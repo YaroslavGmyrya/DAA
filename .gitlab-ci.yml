@@ -29,7 +29,7 @@ build:
 diff:
   stage: diff
   image: 
-    name: alpine/helm:3.14.0
+    name: alpine/helm:3.12.3
     entrypoint: [""]  
   script:
     - helm plugin install https://github.com/databus23/helm-diff || true
@@ -41,7 +41,7 @@ diff:
 deploy:
   stage: deploy
   image: 
-    name: alpine/helm:3.14.0
+    name: alpine/helm:3.12.3
     entrypoint: [""]  
 
   script:
