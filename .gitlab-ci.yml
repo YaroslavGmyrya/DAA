@@ -32,7 +32,7 @@ diff:
     name: alpine/helm:3.12.3
     entrypoint: [""]  
   script:
-    - helm plugin install https://github.com/databus23/helm-diff || true
+    - helm plugin install https://github.com/databus23/helm-diff
     - mkdir -p ~/.kube
     - echo "$KUBE_CONFIG" > ~/.kube/config
     - helm diff upgrade --allow-unreleased ia331s08-app ./chart --namespace ia331 --set image="$TAGS"
