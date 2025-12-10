@@ -29,7 +29,7 @@ build:
 diff:
   stage: diff
   image: alpine/helm:3.14.0
-  
+
   script:
     - helm plugin install https://github.com/databus23/helm-diff || true
     - mkdir -p ~/.kube
@@ -39,8 +39,9 @@ diff:
 
 deploy:
   stage: deploy
-  image: alpine/helm:3.14.0 
-
+  image:
+    name: alpine/helm:3.14.0
+    entrypoint: [""]   
   script:
     - mkdir -p ~/.kube
     - echo "$KUBE_CONFIG" > ~/.kube/config
