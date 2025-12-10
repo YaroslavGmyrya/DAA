@@ -1,0 +1,7 @@
+
+deployment:
+  replicas: 2
+
+ingress:
+  className: traefik-dev
+

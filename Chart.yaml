@@ -1,0 +1,6 @@
+apiVersion: v2
+name: ia331s08-app
+description: ia331s08-app
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

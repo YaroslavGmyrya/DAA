@@ -1,5 +1,6 @@
 stages:
   - build
+  - diff
   - deploy
 
 build:
@@ -25,19 +26,24 @@ build:
     reports:
       dotenv: tags.env  
 
+diff:
+  stage: diff
+  image: alpine/helm:3.14.0
+  script:
+    - helm plugin install https://github.com/databus23/helm-diff || true
+    - mkdir -p ~/.kube
+    - echo "$KUBE_CONFIG" > ~/.kube/config
+    - helm diff upgrade --allow-unreleased ia331s08-app ./chart --namespace ia331 \ --set image="$TAGS"
+
+
 deploy:
   stage: deploy
-  image: alpine:latest
-  before_script:
-    - apk add --no-cache curl gettext
-    - curl -LO "https://dl.k8s.io/release/v1.30.7/bin/linux/arm64/kubectl"
-    - install -m 0755 kubectl /usr/local/bin/kubectl
+  image: alpine/helm:3.14.0 
+
   script:
-    - echo "Deploy with tag $TAGS"
-    - ls -la
-    - envsubst < deployment.yaml | kubectl apply -f - 
-    - kubectl apply -f service.yaml
-    - kubectl apply -f ingress.yaml
+    - mkdir -p ~/.kube
+    - echo "$KUBE_CONFIG" > ~/.kube/config
+    - helm upgrade --install ia331s08-app ./chart --namespace ia331 --set image="$TAGS"
 
   rules:
     - when: manual
