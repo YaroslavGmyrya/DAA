@@ -55,7 +55,7 @@ deploy:
     entrypoint: [""]  
 
   variables:
-    RELEASE_NAME: "ia331s08-app2"
+    RELEASE_NAME: "ia331s08-app"
 
   script:
     - mkdir -p ~/.kube
