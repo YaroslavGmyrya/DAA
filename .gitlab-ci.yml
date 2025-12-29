@@ -52,6 +52,7 @@ deploy:
     RELEASE_NAME: "ia331s08-app"
 
   script:
+    - echo "DEPLOY WITH TAG $TAGS"
     - echo "$KUBECONFIG"
     - mkdir -p ~/.kube
     - echo "$KUBECONFIG" > ~/.kube/config
