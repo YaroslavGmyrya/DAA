@@ -52,6 +52,7 @@ deploy:
     RELEASE_NAME: "ia331s08-app"
 
   script:
+    - echo "$KUBECONFIG"
     - mkdir -p ~/.kube
     - echo "$KUBECONFIG" > ~/.kube/config
     - helm upgrade --install "$RELEASE_NAME" ./chart --namespace ia331 --set image="$TAGS"
