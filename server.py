@@ -9,7 +9,7 @@ print("Start server")
 def handle_stop(signum, frame):
     print("Stop server")
     sys.exit(0)
-
+ 
 app = Flask(__name__)
 
 @app.route("/")
